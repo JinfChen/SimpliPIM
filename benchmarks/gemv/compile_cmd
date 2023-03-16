@@ -1,0 +1,2 @@
+dpu-upmem-dpurte-clang -O2 -DNR_TASKLETS=12 -o bin/dpu_binary gemv_dpu.c ../../lib/TableHost.c ../../lib/Table.c ../../lib/TableShared.c ../../lib/Common.c ../../lib/Parallel.c 
+gcc --std=c99 -lm -O3 host.c -o bin/host ../../lib/Common.c ../../lib/TableHost.c ../../lib/UpmemCustom.c `dpu-pkg-config --cflags --libs dpu`
