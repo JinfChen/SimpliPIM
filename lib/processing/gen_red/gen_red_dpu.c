@@ -32,6 +32,7 @@ int main() {
     uint32_t  table_len = GEN_RED_INPUT_ARGUMENTS.table_len;
 
     start_func(&GEN_RED_INPUT_ARGUMENTS);
-    gen_red_dpu(DPU_MRAM_HEAP_POINTER+input_start_offset, DPU_MRAM_HEAP_POINTER+output_start_offset, input_type_size, output_type_size, len, table_len);
+    //gen_red_dpu(DPU_MRAM_HEAP_POINTER+input_start_offset, DPU_MRAM_HEAP_POINTER+output_start_offset, input_type_size, output_type_size, len, table_len);
+    gen_red_shared_cache_dpu(DPU_MRAM_HEAP_POINTER+input_start_offset, DPU_MRAM_HEAP_POINTER+output_start_offset, input_type_size, output_type_size, len, table_len);
     return 0;
 }

@@ -120,16 +120,14 @@ void* table_gen_red(const char* src_name, const char* dest_name, uint32_t output
         DPU_ASSERT(dpu_push_xfer(set, DPU_XFER_TO_DPU, "GEN_RED_INPUT_ARGUMENTS", 0, sizeof(gen_red_arguments_t), DPU_XFER_DEFAULT));
         
         gettimeofday(&end_time, NULL);
-        double prepare_args_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 +
-                      (end_time.tv_usec - start_time.tv_usec);
+        double prepare_args_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 + (end_time.tv_usec - start_time.tv_usec);
         
         //call red function
         gettimeofday(&start_time, NULL);
         DPU_ASSERT(dpu_launch(set, DPU_SYNCHRONOUS));
         gettimeofday(&end_time, NULL);
 
-        double kernel_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 +
-                      (end_time.tv_usec - start_time.tv_usec);
+        double kernel_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 + (end_time.tv_usec - start_time.tv_usec);
 
         // reduction on cpu
         gettimeofday(&start_time, NULL);
@@ -147,8 +145,7 @@ void* table_gen_red(const char* src_name, const char* dest_name, uint32_t output
         gather_tables_to_host(table_management, my_table, output_len, output_type, outputs, init_func, combine_func);
         dlclose(lib);
         gettimeofday(&end_time, NULL);
-        double host_table_reduction_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 +
-                      (end_time.tv_usec - start_time.tv_usec);
+        double host_table_reduction_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 + (end_time.tv_usec - start_time.tv_usec);
         // back to dpus
 
         // table info
@@ -174,16 +171,17 @@ void* table_gen_red(const char* src_name, const char* dest_name, uint32_t output
         add_table(t, table_management);
 
         gettimeofday(&end_time, NULL);
-        double register_table_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 +
-                      (end_time.tv_usec - start_time.tv_usec);
+        double register_table_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 + (end_time.tv_usec - start_time.tv_usec);
         
         printf("--------------\n");
         printf("table reduction function : ");
         printf(binary);
+        
         printf("\nreduction function kernel execution time : %f\n", kernel_time/1000);
         printf("host reduction execution time : %f\n", host_table_reduction_time/1000);
         printf("function call and table management time : %f\n", (register_table_time+prepare_args_time)/1000);
         printf("--------------\n");
+        
 
         return my_table;
     }

@@ -12,10 +12,10 @@
 
 
 void init_data(T* A){
-    for(unsigned long i=0; i<nr_elements; i++){
-        A[i] = i % 4096;
+    for(unsigned int i=0; i<nr_elements; i++){
+        A[i] = i%4096;
     }
-} 
+}
 
 void zero_out_hist(uint32_t* histo){
     for(int i=0; i<bins; i++){

@@ -14,7 +14,7 @@ void table_map(const char* src_name, const char* dest_name, uint32_t outputs, ui
     if(binary_handle->func_type == 0 && src_table->is_virtual_zipped == 0){
 
         //timing
-        gettimeofday(&start_time, NULL);
+        //gettimeofday(&start_time, NULL);
 
         struct dpu_set_t set = table_management->set;
         uint32_t num_dpus = table_management->num_dpus;
@@ -41,17 +41,16 @@ void table_map(const char* src_name, const char* dest_name, uint32_t outputs, ui
 
         DPU_ASSERT(dpu_push_xfer(set, DPU_XFER_TO_DPU, "MAP_INPUT_ARGUMENTS", 0, sizeof(map_arguments_t), DPU_XFER_DEFAULT));
     
-        gettimeofday(&end_time, NULL);
+        //gettimeofday(&end_time, NULL);
         double prepare_args_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 +
                       (end_time.tv_usec - start_time.tv_usec);
                 
         //call map function
-        gettimeofday(&start_time, NULL);
+        //gettimeofday(&start_time, NULL);
         DPU_ASSERT(dpu_launch(set, DPU_SYNCHRONOUS));
-        gettimeofday(&end_time, NULL);
+        //gettimeofday(&end_time, NULL);
 
-        double kernel_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 +
-                      (end_time.tv_usec - start_time.tv_usec);
+        //double kernel_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 + (end_time.tv_usec - start_time.tv_usec);
 
         // table information to management unit
         // timing
@@ -72,9 +71,8 @@ void table_map(const char* src_name, const char* dest_name, uint32_t outputs, ui
         add_table(t, table_management);
     
 
-        gettimeofday(&end_time, NULL);
-        double register_table_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 +
-                      (end_time.tv_usec - start_time.tv_usec);
+        //gettimeofday(&end_time, NULL);
+        //double register_table_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 + (end_time.tv_usec - start_time.tv_usec);
 
         printf("--------------\n");
         printf("map function : ");
@@ -86,7 +84,7 @@ void table_map(const char* src_name, const char* dest_name, uint32_t outputs, ui
     else if (binary_handle->func_type == 0 && src_table->is_virtual_zipped == 1)
     {
          //timing
-        gettimeofday(&start_time, NULL);
+        //gettimeofday(&start_time, NULL);
 
         struct dpu_set_t set = table_management->set;
         uint32_t num_dpus = table_management->num_dpus;
@@ -131,7 +129,7 @@ void table_map(const char* src_name, const char* dest_name, uint32_t outputs, ui
 
         // table information to management unit
         // timing
-        gettimeofday(&start_time, NULL);
+        //gettimeofday(&start_time, NULL);
 
         table_host_t* t = malloc(sizeof(table_host_t));
         t->name = malloc(strlen(dest_name)+1);
@@ -148,9 +146,9 @@ void table_map(const char* src_name, const char* dest_name, uint32_t outputs, ui
         add_table(t, table_management);
     
 
-        gettimeofday(&end_time, NULL);
-        double register_table_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 +
-                      (end_time.tv_usec - start_time.tv_usec);
+        //gettimeofday(&end_time, NULL);
+        //double register_table_time = (end_time.tv_sec - start_time.tv_sec) * 1000000.0 +
+                      //(end_time.tv_usec - start_time.tv_usec);
 
         printf("--------------\n");
         printf("map function : ");

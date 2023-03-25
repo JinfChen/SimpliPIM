@@ -3,10 +3,10 @@
 #include <stdlib.h>
 uint32_t print_info = 0;
 typedef uint32_t T; 
-const uint32_t dpu_number = 3; //2432
+const uint32_t dpu_number = 8; //2432
 
 #define DEPTH 12 // 2^12 = 4096
 #define bins 256
 
-uint64_t nr_elements = dpu_number*1024*1536; //64*1536*1024
+uint64_t nr_elements = dpu_number*1536*1024; //64*1536*1024
 #endif

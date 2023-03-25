@@ -90,7 +90,7 @@ void compute_gradients(const T*arr){
 
   printf("\nthe gradients on host: \n");
   for(int i=0; i<dim; i++){
-    printf("%lld ", gradient_tmp[i]);
+    printf("%ld ", gradient_tmp[i]);
   }
   printf("\n");
 
@@ -116,7 +116,7 @@ void get_output_file(int num_dpus, int dim, int num_elem){
 
 int main(){
   smalltable_management_t* table_management = table_management_init(dpu_number);
-  printf("dim: %d, num_elem: %d, iter: %d, lr: %f \n", dim, num_elements, iter, lr);
+  printf("dim: %d, num_elem: %ld, iter: %d, lr: %f \n", dim, num_elements, iter, lr);
 
   // reading arguments 
   /*
@@ -189,7 +189,7 @@ int main(){
   
   printf("the gradients of linear model: \n");
   for(int i=0; i<dim; i++){
-    printf("%lld ", gradients_dpu[i]);
+    printf("%ld ", gradients_dpu[i]);
   }
   printf("\n");
   

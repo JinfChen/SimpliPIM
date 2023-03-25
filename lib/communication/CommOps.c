@@ -157,3 +157,7 @@ void small_table_broadcast(char* const table_id, void* elements, uint64_t len, u
     t->is_virtual_zipped = 0;
     add_table(t, table_management);
 }
+
+void small_table_allreduce(char* const table_id, smalltable_management_t* table_management){}
+
+void small_table_allgather(char* const table_id, smalltable_management_t* table_management){}
